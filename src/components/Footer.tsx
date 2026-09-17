@@ -40,7 +40,21 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] text-[#555555]">
-          <span>© 2026 CLUB1999 · 100% SATIRE · NO WARRANTIES · PLEASE DON&apos;T SUE US</span>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>© 2026 CLUB1999 · 100% SATIRE</span>
+            <span>·</span>
+            <span>
+              Made by{' '}
+              <a
+                href="https://www.linkedin.com/in/yashn108"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FA5438] underline underline-offset-2 hover:text-white transition-colors font-medium"
+              >
+                Yash
+              </a>
+            </span>
+          </div>
           <span className="text-[#FA5438]">ALL CHUNKS ≤ ₹1,999.00 (MDR IMMUNE)</span>
         </div>
       </div>
