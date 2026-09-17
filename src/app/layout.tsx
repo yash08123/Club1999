@@ -16,14 +16,32 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://club1999.vercel.app'),
   title: 'club1999 — Split UPI Payments into ₹1,999 Chunks',
   description:
-    'Split large UPI invoices into clean ₹1,999 chunks. Institutional architectural precision with zero setup or transaction fees. Built for laughs.',
-  keywords: ['club1999', 'UPI payment splitter', '1999 UPI', 'split payment', 'UPI QR generator'],
+    'Split large UPI invoices into clean ₹1,999 chunks. Same bill. Smaller payments. Bigger laughs. 100% client-side parody project.',
+  keywords: ['club1999', 'UPI payment splitter', '1999 UPI', 'split payment', 'UPI QR generator', 'MDR parody'],
   openGraph: {
     title: 'club1999 — Split UPI Payments into ₹1,999 Chunks',
-    description: 'Split large UPI payments into chunks of ₹1,999. Simple, fast, and 100% on-device.',
+    description: 'Same bill. Smaller payments. Bigger laughs. Deliberately breaks payments into sub-₹2,000 chunks.',
+    url: 'https://club1999.vercel.app',
+    siteName: 'club1999',
+    locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'club1999 — Split UPI Payments into ₹1,999 Chunks',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'club1999 — Split UPI Payments into ₹1,999 Chunks',
+    description: 'Same bill. Smaller payments. Bigger laughs. Deliberately breaks payments into sub-₹2,000 chunks.',
+    images: ['/og-image.png'],
   },
 };
 
