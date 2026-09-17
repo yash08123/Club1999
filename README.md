@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# club1999
+
+An over-engineered, institutional-aesthetic parody web app that slices large UPI transactions into sub-₹2,000 chunks (specifically ₹1,999 each) to remain humorously "MDR immune" following the October 15, 2026 UPI MDR framework.
+
+## Features
+
+- **Bitnomial-Inspired Technical Aesthetic**: Architectural hairline grid, high-contrast palette, authentic `PP Neue Machina` and `PP Neue Montreal Mono` typography, and vibrant coral `#FA5438` accents.
+- **Client-Side Greedy Chunking**: Splits any amount up to ₹1,99,900 into chunks capped at ₹1,999.
+- **Scrollable QR Viewport**: Contained multi-QR window so long lists of QR codes don't break page layout.
+- **Print & PDF Export**: Instant print stylesheet formatting that expands all QR codes cleanly across printable pages.
+- **Zero Remote Storage / 100% On-Device**: All UPI strings and QR matrices are generated locally in your browser.
+- **PostHog Analytics Integration**: Graceful optional telemetry for pageviews and chunk generation events.
 
 ## Getting Started
 
-First, run the development server:
-
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. (Optional) Set up PostHog analytics in `.env.local`:
+```env
+NEXT_PUBLIC_POSTHOG_KEY=your_key_here
+NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Build for production:
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy directly on [Vercel](https://vercel.com) or any Next.js-compatible host. Zero databases or backend servers required.

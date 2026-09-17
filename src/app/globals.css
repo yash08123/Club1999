@@ -1,26 +1,245 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'PP Neue Machina';
+  src: url('/fonts/PPNeueMachina-PlainRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Machina';
+  src: url('/fonts/PPNeueMachina-PlainBold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Machina Inktrap';
+  src: url('/fonts/PPNeueMachina-InktrapRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal Mono';
+  src: url('/fonts/PPNeueMontrealMono-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: 'PP Neue Machina', var(--font-sans-body), sans-serif;
+  --font-display-ink: 'PP Neue Machina Inktrap', 'PP Neue Machina', sans-serif;
+  --font-mono: 'PP Neue Montreal Mono', var(--font-mono-fallback), monospace;
+  --font-sans: var(--font-sans-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --color-accent: #FA5438;
+  --color-accent-dark: #E04B2E;
+  --color-accent-soft: rgba(250, 84, 56, 0.08);
+  --color-bg: #F4F4F2;
+  --color-bg-alt: #ECECE9;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E2DF;
+  --color-border-strong: #C8C8C4;
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+  --color-text-muted: #888888;
+
+  --color-dark-bg: #121212;
+  --color-dark-surface: #181818;
+  --color-dark-border: #262626;
+  --color-dark-text: #F5F5F5;
+  --color-dark-muted: #888888;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Bitnomial Font Utility Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-display-ink {
+  font-family: var(--font-display-ink);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Subtle Architectural Vertical Lines Background (like Bitnomial) */
+.bg-architectural-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: calc(100% / 6) 100%;
+}
+
+@media (max-width: 768px) {
+  .bg-architectural-grid {
+    background-size: calc(100% / 4) 100%;
+  }
+}
+
+/* Bitnomial Button Styles */
+.btn-bitnomial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: #111111;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: 1px solid var(--color-accent);
+}
+
+.btn-bitnomial:hover:not(:disabled) {
+  background-color: #111111;
+  color: var(--color-accent);
+  border-color: #111111;
+}
+
+.btn-bitnomial:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-bitnomial-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  border: 1px solid var(--color-border-strong);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-bitnomial-outline:hover:not(:disabled) {
+  background-color: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+}
+
+/* Hairline borders */
+.hairline-b {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--color-border);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--color-border);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--color-border);
+}
+
+.hairline-all {
+  border: 1px solid var(--color-border);
+}
+
+/* Architectural Card */
+.arch-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* Number spinners removal */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Scrollable QR Window custom scrollbar */
+.qr-scroll-window::-webkit-scrollbar {
+  width: 6px;
+}
+
+.qr-scroll-window::-webkit-scrollbar-track {
+  background: #ECECE9;
+}
+
+.qr-scroll-window::-webkit-scrollbar-thumb {
+  background: #C4C4C0;
+  border-radius: 0px;
+}
+
+.qr-scroll-window::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+    background-image: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Expand the scroll window completely when printing */
+  .qr-scroll-window {
+    max-height: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    padding-right: 0 !important;
+  }
+}
+
+.print-only {
+  display: none;
 }
