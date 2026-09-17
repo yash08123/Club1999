@@ -26,7 +26,8 @@ export type AnalyticsEvent =
 /**
  * Track an analytics event via PostHog.
  *
- * Safe to call before PostHog is initialized — silently no-ops.
+ * Safe to call before PostHog network request completes — posthog-js
+ * queues events automatically and flushes them once loaded.
  *
  * @param eventName - The name of the event to track
  * @param properties - Optional properties associated with the event
@@ -36,7 +37,7 @@ export function trackEvent(
   properties?: Record<string, string | number | boolean>
 ): void {
   try {
-    if (typeof window !== 'undefined' && posthog.__loaded) {
+    if (typeof window !== 'undefined') {
       posthog.capture(eventName, properties);
     }
   } catch {

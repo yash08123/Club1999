@@ -1,73 +1,61 @@
 'use client';
 
 import posthog from 'posthog-js';
-import { PostHogProvider as PHProvider, usePostHog } from 'posthog-js/react';
+import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-/**
- * Initialize PostHog only once, client-side, when the API key is present.
- */
-function initPostHog() {
-  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+// Support both NEXT_PUBLIC_POSTHOG_KEY and NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN (used by Vercel integration and PostHog docs)
+const POSTHOG_KEY =
+  process.env.NEXT_PUBLIC_POSTHOG_KEY ||
+  process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN ||
+  process.env.NEXT_PUBLIC_POSTHOG_TOKEN;
 
-  if (!key || typeof window === 'undefined') return;
+const POSTHOG_HOST =
+  process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
 
-  if (!posthog.__loaded) {
-    posthog.init(key, {
-      api_host: host || 'https://eu.i.posthog.com',
-      capture_pageview: false, // We handle this manually for SPA navigation
-      capture_pageleave: true,
-      persistence: 'localStorage+cookie',
-      autocapture: false, // We use our own trackEvent abstraction
-    });
-  }
+// Initialize immediately on client load before any React tree mounts
+if (typeof window !== 'undefined' && POSTHOG_KEY) {
+  posthog.init(POSTHOG_KEY, {
+    api_host: POSTHOG_HOST,
+    person_profiles: 'identified_only',
+    capture_pageview: false, // We manually capture in PostHogPageView to handle App Router navigation
+    capture_pageleave: true,
+  });
 }
 
 /**
- * Captures a PostHog pageview on every route change.
- * Wrapped in Suspense because useSearchParams requires it in Next.js App Router.
+ * Captures a PostHog pageview on initial load and every route change.
  */
 function PostHogPageView() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const ph = usePostHog();
 
   useEffect(() => {
-    if (pathname && ph) {
+    if (pathname && typeof window !== 'undefined' && POSTHOG_KEY) {
       let url = window.origin + pathname;
-      const search = searchParams.toString();
+      const search = searchParams?.toString();
       if (search) {
         url += '?' + search;
       }
-      ph.capture('$pageview', { $current_url: url });
+      posthog.capture('$pageview', {
+        $current_url: url,
+      });
     }
-  }, [pathname, searchParams, ph]);
+  }, [pathname, searchParams]);
 
   return null;
 }
 
 /**
- * PostHog analytics provider.
- *
- * Wrap your app with this component.
- * If NEXT_PUBLIC_POSTHOG_KEY is not set, PostHog is not initialized
- * and the children render normally without any analytics overhead.
+ * PostHog provider for Next.js App Router.
  */
 export default function PostHogProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  useEffect(() => {
-    initPostHog();
-  }, []);
-
-  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-
-  // If no key configured, just render children without PostHog
-  if (!key) {
+  if (!POSTHOG_KEY) {
     return <>{children}</>;
   }
 
