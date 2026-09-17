@@ -46,7 +46,7 @@ export default function Footer() {
             <span>
               Made by{' '}
               <a
-                href="https://www.linkedin.com/in/yashn108"
+                href="https://devyashportfolio.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#FA5438] underline underline-offset-2 hover:text-white transition-colors font-medium"
