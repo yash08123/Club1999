@@ -4,7 +4,6 @@ An over-engineered, institutional-aesthetic parody web app that slices large UPI
 
 ## Features
 
-- **Bitnomial-Inspired Technical Aesthetic**: Architectural hairline grid, high-contrast palette, authentic `PP Neue Machina` and `PP Neue Montreal Mono` typography, and vibrant coral `#FA5438` accents.
 - **Client-Side Greedy Chunking**: Splits any amount up to ₹1,99,900 into chunks capped at ₹1,999.
 - **Scrollable QR Viewport**: Contained multi-QR window so long lists of QR codes don't break page layout.
 - **Print & PDF Export**: Instant print stylesheet formatting that expands all QR codes cleanly across printable pages.
