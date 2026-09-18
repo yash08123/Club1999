@@ -30,10 +30,12 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://club1999.vercel.app/og-image.png',
+        secureUrl: 'https://club1999.vercel.app/og-image.png',
         width: 1200,
         height: 630,
         alt: 'club1999 — Split UPI Payments into ₹1,999 Chunks',
+        type: 'image/png',
       },
     ],
   },
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'club1999 — Split UPI Payments into ₹1,999 Chunks',
     description: 'Same bill. Smaller payments. Bigger laughs. Deliberately breaks payments into sub-₹2,000 chunks.',
-    images: ['/og-image.png'],
+    images: ['https://club1999.vercel.app/og-image.png'],
   },
 };
 

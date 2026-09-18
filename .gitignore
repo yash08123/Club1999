@@ -29,9 +29,23 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # Environment files
-.env*.local
 .env
+.env*.local
+.env.development
+.env.test
+.env.production
 !.env.example
+
+# IDE and Editors
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
 
 # Vercel
 .vercel
